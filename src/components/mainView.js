@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import HowTo from '../components/pages/howTo';
 import Stories from '../components/pages/stories';
 import scrollToComponent from 'react-scroll-to-component';
-import 'react-sticky-header/styles.css';
-import StickyHeader from 'react-sticky-header';
+import '../utilities/react-sticky-header/styles.css';
+import StickyHeader from '../utilities/react-sticky-header';
 import Slideshow from '../components/slideshow';
 
 
