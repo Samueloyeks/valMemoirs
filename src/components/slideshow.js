@@ -32,11 +32,9 @@ class Slideshow extends Component {
             }
         })
         const data = await response.json();
-        console.log(data)
         for (let i = 0; i < 5; i++) {
             fadeImages.push(data[i].urls.regular)
         }
-        console.log(fadeImages)
         this.setState({ loading: false })
     }
 

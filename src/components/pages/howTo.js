@@ -12,9 +12,9 @@ export default class HowTo extends Component {
                     Just follow the steps below:
                     </p>
                     <ul>
-                        <li>Click the button to add a story</li>
+                        <li>Click the button above to add a story</li>
                         <li>A form will appear where you can fill in your details and story</li>
-                        <li>After you have completed the form, your can view your story along with<br/> the other stories on Val Memoirs. Congratulations!</li>
+                        <li>After you have completed the form, your can view your story along with the other stories on Val Memoirs. Congratulations!</li>
                     </ul>
                     <p style={{color:'#ff0000b5'}}>NOTE: YOU CANNOT UPLOAD MORE THAN ONE STORY AS A SINGLE USER</p>
                 </div>

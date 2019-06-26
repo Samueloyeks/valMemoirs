@@ -17,12 +17,11 @@
 
 
 .App , .MainView{ 
-  // text-align: center;
   width: 100% !important;
   height: 100% !important;
 }
 .HowTo, .Stories{
-  width: 75% !important;
+  width: 80% !important;
   height: 80% !important;
   width: 100vw;
   overflow-x: hidden;
@@ -135,7 +134,7 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  height: 50%;
+  height: 80%;
   object-fit: cover;
   
 }
@@ -148,7 +147,7 @@ div+.indicators{
   border-radius: 10px !important;
 }
 .Header_title{
-  margin: 40px 0;
+  margin: 20px 0;
   display: inline-block;
   font-family: BeautyMountains;
   color: white;
@@ -165,7 +164,6 @@ cursor: pointer;
 display: inline-block;
 float: right;
 list-style-type: none;
-margin: 50px;
 margin-right: 50px;
 padding: 0;
 overflow: hidden;
@@ -184,7 +182,6 @@ overflow: hidden;
 .headerDivs{
   text-align: center;
   margin: 30px 0 10px 0 !important;
-  // width: 60%;
 
 }
 .headerDivs>h1{
@@ -197,7 +194,6 @@ overflow: hidden;
 .storyDiv{
   width: 80%;
   height: 50%;
-  // padding:10px;
   background-color: wheat;
   position: absolute;
   left: 50%;
@@ -227,7 +223,6 @@ overflow: hidden;
   padding: 10px 20px !important;
 }
 .storyContainer>h5{
-  // text-align:center !important;
   font-size: 12px;
   color: blue;
   display: inline-block;
@@ -238,7 +233,8 @@ overflow: hidden;
 
 }
 .storyContainer>p{
-  height: inherit;
+  height: 20%;
+  text-overflow:ellipsis ;
 }
 
 .readMoreDiv{
@@ -247,13 +243,16 @@ overflow: hidden;
   height: 20%;
   z-index: 40;
 }
-.storyContainer>button{
-  height: 100px;
-  width: 100%;
-  color: white;
-  background-color: black;
+
+.storyContainer > button {
+  height: 40px;
+  width: 30%;
+  border-radius: 10px;
   position: absolute;
-  bottom: 0;
+  color: white;
+  left: 35%;
+  bottom: 30px;
+  background-color: black;
 }
 .addStoryDiv{
   padding:0 20px 5px 20px;
@@ -263,7 +262,6 @@ overflow: hidden;
   margin: 0;
   vertical-align: middle;
   font-size: xx-large;
-  // display: inline-block;
 }
 .addStoryDiv>button{
   padding:0 20px 0 20px;
@@ -282,7 +280,7 @@ overflow: hidden;
   height: 70%;
   text-align: center;
   border-radius: 10px;
-
+  overflow: scroll !important;
 }
 .close{
   float: right;
@@ -303,6 +301,7 @@ overflow: hidden;
   cursor: pointer;
   background: purple;
 }
+
 .modal>a{
   float: right;
   padding:10px;
@@ -312,8 +311,8 @@ overflow: hidden;
 }
 ::-webkit-scrollbar {
   height: 0px;
-  width: 0px; /* Remove scrollbar space */
-  background: transparent; /* Optional: just make scrollbar invisible */
+  width: 0px; 
+  background: transparent; 
 }
 .about{
   align-items: center;
@@ -325,7 +324,7 @@ overflow: hidden;
   color: $reddishColor;
 }
 .content{
-  overflow-y: scroll;
+  overflow: scroll;
   margin-top: 10px;
 }
 .content>#form>input,select,textarea{
@@ -387,17 +386,22 @@ button:hover{
 }
 .about{
   margin: 20px 30px;
-  font-size: 20px !important;
+  font-size: 30px !important;
   height: 88%;
+  width: 95%;
+  font-weight: bolder;
+}
+.about>p{
+  margin: 20px 30px;
+  font-size: 30px !important;
   width: 100%;
   font-weight: bolder;
-
 }
 p{
   font-size: 20px;
 }
 .section{
-  height: 650px !important;
+  height: 750px !important;
   z-index: 1 !important;
   overflow: hidden !important;
 }
@@ -409,7 +413,11 @@ p{
   left: 25%;
   font-size: 85px;
   font-family: lilyScript;
-  color: black;
+  color: white;
+}
+.Header_root{
+  background-color: #000000e8 !important; 
+
 }
 
 

@@ -12,7 +12,7 @@ export default class mainView extends Component {
     render() {
         return (
             <div className="MainView">
-                <StickyHeader className="header"
+                <StickyHeader 
                     header={
                         <div className="Header_root">
                             <h1 className="Header_title" onClick={() =>{window.scrollTo({top:0,left:0,duration: 500,offset: 0,});}}>VAL-MEMOIRS</h1>

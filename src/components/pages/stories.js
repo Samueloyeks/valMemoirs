@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import Avatar from "react-avatar";
 import Popup from "reactjs-popup";
 
+import toast from 'toasted-notes' 
+import 'toasted-notes/src/styles.css';
+
+
+
 export default class stories extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            count:0,
+            count: 0,
             savedUsers: [],
             user: {
                 firstName: '',
@@ -23,7 +28,7 @@ export default class stories extends Component {
                     lastName: "Jones",
                     username: "Sam",
                     title: "Cool Story",
-                    body: "cool story",
+                    body: "story body",
                     likes: 0,
                     datePosted: '2019/6/26',
                     timePosted: '08:00AM',
@@ -34,7 +39,7 @@ export default class stories extends Component {
                     lastName: "Brooks",
                     username: "Dave",
                     title: "Cool Story",
-                    body: "cool story",
+                    body: "story body",
                     likes: 0,
                     datePosted: '2019/6/26',
                     timePosted: '11:00AM',
@@ -45,7 +50,7 @@ export default class stories extends Component {
                     lastName: "Adams",
                     username: "Jess",
                     title: "Cool Story",
-                    body: "cool story",
+                    body: "story body",
                     likes: 0,
                     datePosted: '2019/6/26',
                     timePosted: '02:00PM',
@@ -56,14 +61,13 @@ export default class stories extends Component {
                     lastName: "Peters",
                     username: "Josh",
                     title: "Cool Story",
-                    body: "cool story",
+                    body: "story body",
                     likes: 0,
                     datePosted: '2019/6/26',
                     timePosted: '11:00AM',
                 },
             ]
         };
-
     }
 
     handleChange(event) {
@@ -85,13 +89,12 @@ export default class stories extends Component {
         this.setState({ user })
     }
     handlestoryChange(event) {
-        console.log(event.target.value.length)
         event.preventDefault();
         let user = this.state.user;
         let name = event.target.name;
         let value = event.target.value;
 
-        this.state.count  = event.target.value.length
+        this.state.count = event.target.value.length
 
 
         user[name] = value;
@@ -99,17 +102,17 @@ export default class stories extends Component {
     }
 
     addStory(e) {
-        e.preventDefault()
+        e.preventDefault();
+        this.setState({showModal:false})
         this.duplicate = false
         for (let i = 0; i < this.state.savedUsers.length; i++) {
             if (this.state.savedUsers[i].username !== '' && this.state.user.username === this.state.savedUsers[i].username)
                 this.duplicate = true
 
-            console.log(this.duplicate)
         }
         if (!this.duplicate) {
-            if(this.state.user.username==''){
-                this.state.user.username='Anonymous' 
+            if (this.state.user.username == '') {
+                this.state.user.username = 'Anonymous'
             }
             var d = new Date();
             var time = this.formatAMPM(d)
@@ -143,10 +146,13 @@ export default class stories extends Component {
                     story: '',
                 }
             })
-            this.setState({count:0})
-            console.log(this.state.stories)
+            this.setState({ count: 0 })
+            toast.notify("Story Added",{
+                duration: 2000,
+                position:'bottom'
+            });
         } else {
-            alert('Sorry '+this.state.user.username+", you have already posted a story.")
+            alert('Sorry ' + this.state.user.username + ", you have already posted a story.")
         }
     }
     addLike(key) {
@@ -167,6 +173,7 @@ export default class stories extends Component {
         var strTime = hours + ':' + minutes + ' ' + ampm;
         return strTime;
     }
+    
 
 
     render() {
@@ -177,23 +184,25 @@ export default class stories extends Component {
                 <h5>Posted by {story.username} on {story.datePosted} at {story.timePosted}</h5>
                 <a onClick={() => { this.addLike(key) }} className="likeLink">Likes: {story.likes}</a><br />
                 <p text-wrap="true">
-                    {story.body}
+                    {((story.body).length > 100) ?
+                        (((story.body).substring(0, 100 - 3)) + '...') :
+                        story.body}
                 </p>
 
-                <Popup 
+                <Popup
                     trigger={<button className="button"> READ MORE </button>} modal>
                     {close => (
                         <div className="modal">
                             <a onClick={close}>
                                 &times;
                             </a><br />
-                            <div className="modal_header">{story.title}</div><br/>
+                            <div className="modal_header">{story.title}</div><br />
                             <div className="content">
-                            <h5 style={{color:'blue'}}>Posted by {story.username} on {story.datePosted} at {story.timePosted}</h5>
-                            <div className="actions">
-                                <button onClick={() => { this.addLike(key) }}>Likes: {story.likes}</button>
-                            </div>
-                               <p> {story.body}</p>
+                                <h5 style={{ color: 'blue' }}>Posted by {story.username} on {story.datePosted} at {story.timePosted}</h5>
+                                <div className="actions">
+                                    <button onClick={() => { this.addLike(key) }}>Likes: {story.likes}</button>
+                                </div>
+                                <p> {story.body}</p>
                             </div>
                         </div>
                     )}
@@ -209,34 +218,34 @@ export default class stories extends Component {
                     {this.items}
                 </div>
                 <div className="addStoryDiv">
-                <h3>Share your valentine story</h3>
+                    <h3>Share your valentine story</h3>
                     <Popup id="popup"
                         trigger={<button className="button">+</button>} modal>
                         {close => (
-                            <div className="modal">
-                                <a onClick={close}>
-                                    &times;
-                                </a><br />
-                                <div className="modal_header">Add your story</div>
-                                <div className="content">
-                                    <form id="form" onSubmit={this.addStory.bind(this)}>
-                                        <input name="firstName" placeholder="First Name" value={this.state.user["firstName"]} onChange={this.handleChange.bind(this)} /> <br />
-                                        <input name="lastName" placeholder="Last Name" value={this.state.user["lastName"]} onChange={this.handleChange.bind(this)} /> <br />
-                                        <input name="username" placeholder="Username" value={this.state.user["username"]} onChange={this.handleusernameChange.bind(this)} /> <br />
-                                        <select name="gender" placeholder="Gender" value={this.state.user["gender"]} onChange={this.handleChange.bind(this)}>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                        </select><br />
-                                        <input name="headline" placeholder="Headline" value={this.state.user["headline"]} onChange={this.handleChange.bind(this)} /> <br />
-                                        <label htmlFor="story">Story</label><br />
-                                        <textarea name="story" value={this.state.user["story"]} onChange={this.handlestoryChange.bind(this)}/><br />
-                                        <p ><span>{this.state.count}</span></p>
-                                        <button>Submit</button>
-                                    </form>
-                                </div>
-                                <div className="actions">
-                                </div>
-                            </div>
+                              <div className="modal">
+                              <a onClick={close}>
+                                  &times;
+                              </a><br />
+                              <div className="modal_header">Add your story</div>
+                              <div className="content">
+                                  <form id="form" onSubmit={this.addStory.bind(this)}>
+                                      <input name="firstName" placeholder="First Name" value={this.state.user["firstName"]} onChange={this.handleChange.bind(this)} /> <br />
+                                      <input name="lastName" placeholder="Last Name" value={this.state.user["lastName"]} onChange={this.handleChange.bind(this)} /> <br />
+                                      <input name="username" placeholder="Username" value={this.state.user["username"]} onChange={this.handleusernameChange.bind(this)} /> <br />
+                                      <select name="gender" placeholder="Gender" value={this.state.user["gender"]} onChange={this.handleChange.bind(this)}>
+                                          <option>Male</option>
+                                          <option>Female</option>
+                                      </select><br />
+                                      <input required name="headline" placeholder="Headline" value={this.state.user["headline"]} onChange={this.handleChange.bind(this)} /> <br />
+                                      <label htmlFor="story">Story</label><br />
+                                      <textarea required name="story" value={this.state.user["story"]} onChange={this.handlestoryChange.bind(this)} /><br />
+                                      <p ><span>{this.state.count}</span></p>
+                                      <button>Submit</button>
+                                  </form>
+                              </div>
+                              <div className="actions">
+                              </div>
+                          </div>
                         )}
                     </Popup>
                 </div>
