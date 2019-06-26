@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Fade } from 'react-slideshow-image';
-import Header from '../components/header'
 import '../App.scss';
+import defaultImage from '../assets/img/img3.jpg';
 
 
 
@@ -24,7 +24,7 @@ class Slideshow extends Component {
     async componentDidMount() {
         const client_id = "bc060ee954b31a5ec6ed79b77a1624cc8c001c175f419a05494cac7c8e5076d5"
         const url = "https://api.unsplash.com/photos/search";
-        const response = await fetch(`${url}?client_id=${client_id}&query=romance&count=5`, {
+        const response = await fetch(`${url}?client_id=${client_id}&query=love&count=5`, {
             method: "GET",
             MODE: "cors",
             headers: {
@@ -44,31 +44,36 @@ class Slideshow extends Component {
     render() {
         return (
             <div>
-                {this.state.loading ? <div>loading...</div> :
+                {this.state.loading ? <div><img src={defaultImage} className="slideshowImage" /></div> :
                     <div>
                         <Fade {...fadeProperties}>
                             <div className="each-fade">
                                 <div className="image-container">
+                                <h1 className="tagLine">There's love in sharing...</h1>
                                     <img src={fadeImages[0]} className="slideshowImage" />
                                 </div>
                             </div>
                             <div className="each-fade">
                                 <div className="image-container">
+                                <h1 className="tagLine">There's love in sharing...</h1>
                                     <img src={fadeImages[1]} className="slideshowImage" />
                                 </div>
                             </div>
                             <div className="each-fade">
                                 <div className="image-container">
+                                <h1 className="tagLine">There's love in sharing...</h1>
                                     <img src={fadeImages[2]} className="slideshowImage" />
                                 </div>
                             </div>
                             <div className="each-fade">
                                 <div className="image-container">
+                                <h1 className="tagLine">There's love in sharing...</h1>
                                     <img src={fadeImages[3]} className="slideshowImage" />
                                 </div>
                             </div>
                             <div className="each-fade">
                                 <div className="image-container">
+                                <h1 className="tagLine">There's love in sharing...</h1>
                                     <img src={fadeImages[4]} className="slideshowImage" />
                                 </div>
                             </div>
@@ -79,3 +84,4 @@ class Slideshow extends Component {
     }
 }
 export default Slideshow;
+
